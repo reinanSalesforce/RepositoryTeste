@@ -1,7 +1,6 @@
-image:
-  # Definição dá imagem que vamos utilizar, nesse caso de React é o node e a versão que ele se encontra
-  name: node:20.18.0
-
+ # Definição dá imagem que vamos utilizar, nesse caso de React é o node e a versão que ele se encontra
+image: node:20.18.0
+ 
   # Defininando os Steps do pipeline
 definitions:
   # ********* STEPS Continuos Integration **********
