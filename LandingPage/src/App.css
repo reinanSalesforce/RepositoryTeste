@@ -8,19 +8,25 @@
     background-color: transparent;
     transition: background-color 0.3s ease, padding 0.3s ease;
     top: -100px;
-    left: 620px;
+    left: 90px;
     font-size: 20px;
     color: white;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .alinhamento {
-    display: flex; /* Alinha os itens horizontalmente */
-  justify-content: center; /* Centraliza horizontalmente */
+  display: flex; /* Alinha os itens em linha */
+  justify-content: space-around; /* Distribui uniformemente o espaço */
   align-items: center; /* Alinha verticalmente */
-  gap: 50px; /* Espaçamento entre os itens */
-  padding: 10px;
+  gap: 60px; /* Espaçamento entre os itens */
+  margin-left: 550px;
+  margin-top: 10px;
   }
+
+  
 
 .navbar .nav-link{
     color: #CCAC73;
@@ -62,7 +68,7 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    margin-left: -80px;
+    margin-left: 480px;
     top: 64px;
     z-index: -1; 
     
@@ -781,4 +787,3 @@ body {
   .link-custom:hover {
     text-decoration: underline; 
   }
-

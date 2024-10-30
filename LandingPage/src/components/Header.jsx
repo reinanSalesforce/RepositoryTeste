@@ -38,10 +38,10 @@ function Header() {
         <p className="nav-link" id="InicioNav"><Link to="section1" smooth={true} duration={500}>
                 SOBRE NÓS
               </Link></p>
-        <p className="nav-link" id="AssisNav"><Link to="section2" smooth={true} duration={500}>
+        <p className="nav-link" id="InicioNav"><Link to="section2" smooth={true} duration={500}>
         ASSISTÊNCIA JURÍDICA
               </Link></p>
-        <p className="nav-link" id="ContatoNav" > <Link to="section3" smooth={true} duration={500}>
+        <p className="nav-link" id="InicioNav" > <Link to="section3" smooth={true} duration={500}>
                 CONTATO
               </Link></p>
               </div>  
