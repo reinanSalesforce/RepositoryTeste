@@ -9,7 +9,7 @@ Este projeto é uma landing page para um escritório de advocacia, desenvolvida 
 - **Apresentação dos Serviços**: Detalha os principais serviços oferecidos.
 - **Seção Sobre Nós**: Informações sobre o escritório e sua missão.
 - **Equipe**: Breve perfil dos advogados.
-- **Formulário de Contato**: Para facilitar o envio de mensagens por visitantes.
+- **Formulário de Contato**: Para facilitar o envio de mensagens por visitantes. 
 - **Design Responsivo**: Adaptado para desktop e dispositivos móveis.
 
 This README would normally document whatever steps are necessary to get your application up and running.
