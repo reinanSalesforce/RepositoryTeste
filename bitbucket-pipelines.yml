@@ -1,7 +1,7 @@
- # Definição dá imagem que vamos utilizar, nesse caso de React é o node e a versão que ele se encontra
+# Definição da imagem que vamos utilizar, nesse caso para React usamos o Node.js
 image: node:20.18.0
- 
-  # Defininando os Steps do pipeline
+
+# Definindo os Steps do pipeline
 definitions:
   # ********* STEPS Continuos Integration **********
   steps:
@@ -12,13 +12,15 @@ definitions:
           - node
         script:
           - npm install
-    # Step utilizado para verificar o código se está bom ou ruim      
+          
+    # Step utilizado para verificar o código se está bom ou ruim (Lint)
     - step: &lint
-        name: 'Lint'
+        name: Lint
         script:
           - npm install --save eslint
-          
-      # Step de Teste
+          - npx eslint .  # Executa o lint
+
+       # Step de Teste
     #- step: &test
     #    name: 'Tests'
     #    script:
@@ -27,11 +29,11 @@ definitions:
     #- step:
     #    name: 'Security scan'
     #    script:
-    #        - echo "Your security scan goes here..."
+    #        - echo "Your security scan goes here..."      
 
-## Ordenar a execução do pepiline
-pepilines: 
-  ## Regra de quando for apenas no pull request para executar esse pepiline
+# Ordenar a execução do pipeline
+pipelines:
+  # Regra para executar o pipeline em pull requests
   pull-requests:
     '**':
       - step: *install
