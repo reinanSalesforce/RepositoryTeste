@@ -5,7 +5,7 @@ function PaginaFinal() {
     <>
       <div className="paginaFinal" id="section2">
         <img className="logofinal" src={Logo} alt="" />
-        <a href="https://www.instagram.com/torresedemeryadvocacia/">
+        <a href="https://www.instagram.com/torresedemeryadvocacia/" target="_blank" rel="noopener noreferrer">
         <button className="Btn">
           <span className="svgContainer">
             <svg
