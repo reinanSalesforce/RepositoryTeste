@@ -5,6 +5,7 @@ import Imagem2 from '../assets/img/Consumidor.jpg'
 import Imagem3 from '../assets/img/Contratos.jpg'
 import Imagem4 from '../assets/img/Tributario.jpg'
 import Imagem5 from '../assets/img/Direito Civil.png'
+import './Assistencia.css';
 
 function AssistenciaJuridica() {
   const [display, setDisplay] = useState(true);

@@ -1,0 +1,64 @@
+.navbar {
+    width: 100%;
+    position: relative; /* Não está fixa no topo, apenas acompanha o site */
+    background-color: transparent;
+    transition: background-color 0.3s ease, padding 0.3s ease;
+    top: -100px;
+    left: 90px;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .alinhamento {
+  display: flex; /* Alinha os itens em linha */
+  justify-content: space-around; /* Distribui uniformemente o espaço */
+  align-items: center; /* Alinha verticalmente */
+  gap: 60px; /* Espaçamento entre os itens */
+  margin-left: 550px;
+  margin-top: 10px;
+  }
+
+  
+
+.navbar .nav-link{
+    color: #CCAC73;
+    transition: color 0.3s ease; 
+}
+
+.navbar:hover{
+    color: white;
+}
+
+.navbar.scrolled {
+    position: fixed; /* Quando rolar, a navbar segue fixada */
+    top: 0;
+    background-color: #350000; /* Altera a cor quando o scroll acontece */
+    padding: 10px;
+    z-index: 10000; 
+  }
+
+  .navbar:after {
+    content: "";
+    display: block;
+    height: 1px;
+    width: 45%;
+    background-color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-left: 480px;
+    top: 64px;
+    z-index: -1; 
+    
+    }
+
+    .imagelogob {
+        width: 200px;
+        height: 90px;
+        margin-left: 30px;
+        margin-top: 10px;
+    }

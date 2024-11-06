@@ -1,6 +1,7 @@
 import LogoDourada from "../assets/img/logoouro.png";
 import { Link } from "react-scroll";
 import { useState, useEffect } from "react";
+import './Header.css';
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);

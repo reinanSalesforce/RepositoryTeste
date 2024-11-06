@@ -1,0 +1,75 @@
+.textopequenoAssistencia {
+    color: #CCAC73;
+    margin-left: 280px;
+    font-size: 20px;
+    margin-top: 250px;
+    position: absolute;
+}
+
+.textoGrandeAssistencia {
+    color: white;
+    margin-left: 280px;
+    font-size: 30px;
+    font-weight:bolder;
+    margin-top: 290px; 
+
+}
+
+.textoGrandeAssistencia::after {
+    content: '';
+    position: absolute;
+    top: 250px;
+    left: 15%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 12%;
+    background-color: #CCAC73;
+
+}
+
+
+.paginaAssistencia {
+    margin-top: 1400px;
+    position: absolute;
+    height: 80vh; /* A página vai ocupar 100% da altura da tela */
+}
+
+.Imagemcarrossel {
+    width: 400px;
+    height: 470px;
+}
+
+.slider-container {
+    margin-top: 100px;
+    margin-left: 120px;
+}
+
+.text-container {
+    position: absolute;
+    bottom: 10px;
+    left: 35px;
+    width: 90%;
+  }
+  
+  .fixed-text {
+    color: white;
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 25px;
+    font-weight: bold
+  }
+  
+  .hover-text {
+    color: white;
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+    display: none; /* Ocultar por padrão */
+    font-weight: bold
+  }
+  
+  .image-container:hover .hover-text {
+    display: block; /* Exibir o texto adicional ao passar o mouse */
+  }

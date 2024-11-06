@@ -1,6 +1,7 @@
 import { useSpring, animated } from "@react-spring/web";
 import LogoDourada from "../assets/img/Advogadohomem.png";
 import ImagemMulher from "../assets/img/Advogadomulher.png";
+import './TextTela.css';
 
 const TextTelaInicial = () => {
   const props = useSpring({

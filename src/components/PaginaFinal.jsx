@@ -1,4 +1,5 @@
 import Logo from "../assets/img/logoouro.png";
+import './PaginaFinal.css'
 
 function PaginaFinal() {
   return (

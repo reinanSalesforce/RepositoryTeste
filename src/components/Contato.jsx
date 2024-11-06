@@ -6,6 +6,7 @@ import Icontele from '../assets/img/Telefone.png';
 import Iconrelogio from '../assets/img/relogio.png';
 import Logoplanfleto from '../assets/img/logopreto.png';
 import ChatCustom from './ChatCustom'; // Importando o chatbot
+import './Contato.css';
 
 function Contato() {
   const [isChatOpen, setIsChatOpen] = useState(false);
