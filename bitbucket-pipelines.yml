@@ -23,4 +23,4 @@ pipelines:
           - echo "Fazendo push das alterações"
           - git add .
           - git commit -m "Atualização via Bitbucket pipeline"
-          - git push origin main  # ou a branch que estiver usand
+          - git push origin main  # ou a branch que estiver usando
