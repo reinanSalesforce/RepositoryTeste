@@ -33,8 +33,8 @@ pipelines:
           - cd TesteGithubPage
 
           # Adicionar as mudanças
-          - git add .
-
+          - git add index.html
+          
           # Realizar o commit
           - git commit -m "Atualização via Bitbucket pipeline"
 
