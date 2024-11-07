@@ -1,9 +1,9 @@
 # Definição da imagem que vamos utilizar, nesse caso para React usamos o Node.js
 image: node:20.18.0
 
-pipelines:
-  default:
-    - step:
+definitions:
+  steps:
+    - step: &githubpage
         name: Deploy to GitHub Pages
         script:
           - echo "Setting up SSH agent"
@@ -24,3 +24,9 @@ pipelines:
           - git add .
           - git commit -m "Atualização via Bitbucket pipeline"
           - git push origin main  # ou a branch que estiver usandoo
+
+pipelines:
+  # Regra para executar o pipeline em pull requests
+  pull-requests:
+    '**':
+      - step: *githubpage
