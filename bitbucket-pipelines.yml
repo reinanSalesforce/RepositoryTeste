@@ -22,9 +22,6 @@ pipelines:
           # Adicionar GitHub ao known hosts (verificando a identidade do servidor)
           - ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-          # Testar a autenticação com o GitHub (verificando a chave SSH)
-          - ssh -T git@github.com
-
           # Clonar o repositório GitHub Pages
           - git clone git@github.com:FluxusTech0/TesteGithubPage.git
           
