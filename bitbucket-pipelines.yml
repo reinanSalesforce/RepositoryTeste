@@ -1,26 +1,27 @@
 # Definição da imagem que vamos utilizar, nesse caso para React usamos o Node.js
 image: node:20.18.0
 
-definitions:
-  steps:
-    - step: &githubpage
+pipelines:
+  default:
+    - step:
         name: Deploy to GitHub Pages
         script:
-          # Instalar o SSH
-          - apt-get update && apt-get install -y ssh
-          
+          # Instalar OpenSSL e SSH
+          - apt-get update
+          - apt-get install -y openssl ssh
+
           # Criar diretório .ssh se não existir
           - mkdir -p ~/.ssh
-          
+
           # Adicionar a chave SSH privada
           - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           
           # Definir permissões corretas para a chave
           - chmod 600 ~/.ssh/id_rsa
-          
+
           # Adicionar GitHub ao known hosts (verificando a identidade do servidor)
           - ssh-keyscan github.com >> ~/.ssh/known_hosts
-          
+
           # Clonar o repositório GitHub Pages
           - git clone git@github.com:FluxusTech0/TesteGithubPage.git
           
@@ -31,9 +32,3 @@ definitions:
           - git add .
           - git commit -m "Deploy GitHub Pages"
           - git push origin main
-
-pipelines:
-  # Regra para executar o pipeline em pull requests
-  pull-requests:
-    '**':
-      - step: *githubpage
