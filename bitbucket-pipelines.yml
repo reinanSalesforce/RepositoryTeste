@@ -33,10 +33,10 @@ pipelines:
           - cd TesteGithubPage
 
           # Adicionar as mudanças
-          - git add index.html
+          - git add .
           
           # Realizar o commit
-          - git commit -m "Atualização via Bitbucket pipeline"
+          - git commit -m 'teste'
 
           # Push para o repositório remoto
-          - git push origin main
+          - git push
