@@ -14,7 +14,7 @@ definitions:
 
           - echo "Cloning GitHub repository"
           - git clone git@github.com:FluxusTech0/TesteGithubPage.git
-          - cd repositorio-gh-pages
+          - cd TesteGithubPage
 
           - echo "Atualizando conteúdo"
           # Adicione comandos aqui para compilar/gerar o conteúdo da página
