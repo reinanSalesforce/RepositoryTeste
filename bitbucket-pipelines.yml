@@ -6,21 +6,40 @@ pipelines:
     - step:
         name: Deploy to GitHub Pages
         script:
-          - echo "Setting up SSH agent"
+          # Instalar OpenSSL e SSH
+          - apt-get update
+          - apt-get install -y openssl ssh
+
+          # Criar diretório .ssh se não existir
           - mkdir -p ~/.ssh
+
+          # Adicionar a chave SSH privada
           - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+
+          # Definir permissões corretas para a chave
           - chmod 600 ~/.ssh/id_rsa
+
+          # Adicionar GitHub ao known hosts (verificando a identidade do servidor)
           - ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-          - echo "Cloning GitHub repository"
+          # Testar a autenticação com o GitHub (verificando a chave SSH)
+          - ssh -T git@github.com
+
+          # Clonar o repositório GitHub Pages
           - git clone git@github.com:FluxusTech0/TesteGithubPage.git
           
-           # Adicionar as configurações do usuário Git
-          - git config user.name "FluxusTech0"
-          - git config user.email "projeto.businessAgil@gmail.com"
+          # Adicionar as configurações do usuário Git antes de qualquer commit
+          - git config --global user.name "FluxusTech0"
+          - git config --global user.email "projeto.businessAgil@gmail.com"
 
-          # Adicionar o conteúdo ao repositório GitHub Pages
+          # Navegar para o repositório clonado
           - cd TesteGithubPage
+
+          # Adicionar as mudanças
           - git add .
+
+          # Realizar o commit
           - git commit -m "Atualização via Bitbucket pipeline"
+
+          # Push para o repositório remoto
           - git push origin main
