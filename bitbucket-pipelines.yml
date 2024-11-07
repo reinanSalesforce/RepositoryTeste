@@ -13,7 +13,7 @@ definitions:
           - ssh-keyscan github.com >> ~/.ssh/known_hosts
 
           - echo "Cloning GitHub repository"
-          - git clone git@github.com:usuario/repositorio-gh-pages.git
+          - git clone git@github.com:FluxusTech0/TesteGithubPage.git
           - cd repositorio-gh-pages
 
           - echo "Atualizando conteúdo"
