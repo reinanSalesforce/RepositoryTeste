@@ -6,24 +6,31 @@ definitions:
     - step: &githubpage
         name: Deploy to GitHub Pages
         script:
-          - echo "Setting up SSH agent"
+          # Instalar o SSH
+          - apt-get update && apt-get install -y ssh
+          
+          # Criar diretório .ssh se não existir
           - mkdir -p ~/.ssh
+          
+          # Adicionar a chave SSH privada
           - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          
+          # Definir permissões corretas para a chave
           - chmod 600 ~/.ssh/id_rsa
+          
+          # Adicionar GitHub ao known hosts (verificando a identidade do servidor)
           - ssh-keyscan github.com >> ~/.ssh/known_hosts
-
-          - echo "Cloning GitHub repository"
+          
+          # Clonar o repositório GitHub Pages
           - git clone git@github.com:FluxusTech0/TesteGithubPage.git
+          
+          # Adicionar o conteúdo ao repositório GitHub Pages
           - cd TesteGithubPage
-
-          - echo "Atualizando conteúdo"
-          # Adicione comandos aqui para compilar/gerar o conteúdo da página
-          # por exemplo, npm run build
-
-          - echo "Fazendo push das alterações"
+          - git config user.name "Seu Nome"
+          - git config user.email "seu-email@example.com"
           - git add .
-          - git commit -m "Atualização via Bitbucket pipeline"
-          - git push origin main  # ou a branch que estiver usandoo
+          - git commit -m "Deploy GitHub Pages"
+          - git push origin main
 
 pipelines:
   # Regra para executar o pipeline em pull requests
