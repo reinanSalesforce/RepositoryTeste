@@ -1,40 +1,26 @@
 # Definição da imagem que vamos utilizar, nesse caso para React usamos o Node.js
 image: node:20.18.0
 
-# Definindo os Steps do pipeline
-definitions:
-  # ********* STEPS Continuos Integration **********
-  steps:
-    # Step utilizado para instalar as dependências / utilizei o "&install" para ficar mais facil de chama ele no pepilines
-    - step: &install
-        name: Install dependencies
-        caches: 
-          - node
-        script:
-          - npm install
-          
-    # Step utilizado para verificar o código se está bom ou ruim (Lint)
-    - step: &lint
-        name: Lint
-        script:
-          - npm install --save eslint
-          - npx eslint .  # Executa o lint
-
-       # Step de Teste
-    #- step: &test
-    #    name: 'Tests'
-    #    script:
-    #        - script do documento de teste (Caso tenha)
-    
-    #- step:
-    #    name: 'Security scan'
-    #    script:
-    #        - echo "Your security scan goes here..."      
-
-# Ordenar a execução do pipeline
 pipelines:
-  # Regra para executar o pipeline em pull requests
-  pull-requests:
-    '**':
-      - step: *install
-      - step: *lint
+  default:
+    - step:
+        name: Deploy to GitHub Pages
+        script:
+          - echo "Setting up SSH agent"
+          - mkdir -p ~/.ssh
+          - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          - chmod 600 ~/.ssh/id_rsa
+          - ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+          - echo "Cloning GitHub repository"
+          - git clone git@github.com:usuario/repositorio-gh-pages.git
+          - cd repositorio-gh-pages
+
+          - echo "Atualizando conteúdo"
+          # Adicione comandos aqui para compilar/gerar o conteúdo da página
+          # por exemplo, npm run build
+
+          - echo "Fazendo push das alterações"
+          - git add .
+          - git commit -m "Atualização via Bitbucket pipeline"
+          - git push origin main  # ou a branch que estiver usando
