@@ -1,13 +1,31 @@
-# Definição da imagem que vamos utilizar, nesse caso para React usamos o Node.js
 image: node:20.18.0
 
 pipelines:
   default:
-   - step:
-        name: Teste de Deploy para GitHub
+    - step:
+        name: Deploy para GitHub
         script:
+          # Configurar o usuário do Git
           - git config --global user.email "projeto.businessAgil@gmail.com"
           - git config --global user.name "FluxusTech0"
-          - echo $GIT_SSH_KEY > deploy_key  # Variável de ambiente com a chave SSH privada
+
+          # Configurar a chave SSH
+          - echo "$GIT_SSH_KEY" > deploy_key
           - chmod 600 deploy_key
-          - ssh-agent bash -c 'ssh-add deploy_key; git remote add github git@github.com:FluxusTech0/TesteGithubPage.git && git fetch github main && git checkout main && git pull github main && git add . && git commit -m "Atualização automática pelo pipeline" && git push github main'
+          - eval "$(ssh-agent -s)"
+          - ssh-add deploy_key
+
+          # Verificar e adicionar o host do GitHub aos hosts conhecidos
+          - ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+          # Clonar o repositório do GitHub para garantir a sincronização
+          - git remote add github git@github.com:FluxusTech0/TesteGithubPage.git
+          - git fetch github main
+          - git checkout main
+
+          # Adicionar ou atualizar arquivos
+          - git add .
+          - git commit -m "Atualização automática pelo Bitbucket pipeline" || echo "Nada para commitar"
+
+          # Enviar alterações para o GitHub
+          - git push github main
