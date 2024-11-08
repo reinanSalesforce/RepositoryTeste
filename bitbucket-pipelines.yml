@@ -6,8 +6,6 @@ pipelines:
    - step:
         name: Teste de Deploy para GitHub
         script:
-          - echo "Iniciando o teste de deploy"
-          - echo "Conteúdo de teste" > teste.txt  # Cria um arquivo de teste durante o pipeline
           - git config --global user.email "projeto.businessAgil@gmail.com"
           - git config --global user.name "FluxusTech0"
           - echo $GIT_SSH_KEY > deploy_key  # Variável de ambiente com a chave SSH privada
