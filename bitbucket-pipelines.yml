@@ -3,19 +3,40 @@ image: node:20.18.0
 
 pipelines:
   default:
-   - step:
-        name: Teste de Deploy para GitHub
+    - step:
+        name: Deploy to GitHub Pages
         script:
-          - echo "Iniciando o teste de deploy"
-          - echo "Conteúdo de teste" > teste.txt  # Cria um arquivo de teste durante o pipeline
-          - git config --global user.email "projeto.businessAgil@gmail.com"
+          # Instalar OpenSSL e SSH
+          - apt-get update
+          - apt-get install -y openssl ssh
+
+          # Criar diretório .ssh se não existir
+          - mkdir -p ~/.ssh
+
+          # Adicionar a chave SSH privada
+          - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+
+          # Definir permissões corretas para a chave
+          - chmod 600 ~/.ssh/id_rsa
+
+          # Adicionar GitHub ao known hosts (verificando a identidade do servidor)
+          - ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+          # Clonar o repositório GitHub Pages na branch main
+          - git clone -b main git@github.com:FluxusTech0/TesteGithubPage.git
+
+          # Mover para o diretório do repositório clonado
+          - cd TesteGithubPage
+
+          # Adicionar as configurações do usuário Git antes de qualquer commit
           - git config --global user.name "FluxusTech0"
-          - echo $GIT_SSH_KEY > deploy_key  # Variável de ambiente com a chave SSH privada
-          - chmod 600 deploy_key
-          - ssh-agent bash -c 'ssh-add deploy_key; git remote add github git@github.com:FluxusTech0/TesteGithubPage.git && git fetch github main && git clean -fd && git checkout main && git pull github main && git add . && git commit -m "Atualização automática pelo pipeline" && git push github main'
+          - git config --global user.email "projeto.businessAgil@gmail.com"
 
+          # Adicionar as mudanças
+          - git add .
 
+          # Fazer o commit com mensagem específica
+          - git commit -m "Deploy automático pela pipeline"
 
-         
-         
-         
+          # Push para a branch main
+          - git push origin main
