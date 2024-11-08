@@ -12,5 +12,5 @@ pipelines:
           - git config --global user.name "FluxusTech0"
           - echo $GIT_SSH_KEY > deploy_key  # Variável de ambiente com a chave SSH privada
           - chmod 600 deploy_key
-          - ssh-agent bash -c 'ssh-add deploy_key; git remote add github git@github.com:FluxusTech0/TesteGithubPage.git && git checkout -b TesteGithubPage && git add teste.txt && git commit -m "Teste de deploy para GitHub" && git push github TesteGithubPage'
+          - ssh-agent bash -c 'ssh-add deploy_key; git remote add github git@github.com:FluxusTech0/TesteGithubPage.git && git checkout -b TesteGithubPage && git add teste.txt && git commit -m "Teste de deploy para GitHub" && git push github main'
          
