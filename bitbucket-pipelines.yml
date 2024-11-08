@@ -4,37 +4,12 @@ image: node:20.18.0
 pipelines:
   default:
     - step:
-        name: Deploy to GitHub Pages
+        name: Build, Test and Deploy
         script:
-          # Instalar OpenSSL e SSH
-          - apt-get update
-          - apt-get install -y openssl ssh
-
-          # Criar diretório .ssh se não existir
-          - mkdir -p ~/.ssh
-
-          # Adicionar a chave SSH privada
-          - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-
-          # Definir permissões corretas para a chave
-          - chmod 600 ~/.ssh/id_rsa
-
-          # Adicionar GitHub ao known hosts (verificando a identidade do servidor)
-          - ssh-keyscan github.com >> ~/.ssh/known_hosts
-
-          # Clonar o repositório GitHub Pages
-          - git clone git@github.com:FluxusTech0/TesteGithubPage.git
-          
-          # Adicionar as configurações do usuário Git antes de qualquer commit
-          - git config --global user.name "FluxusTech0"
-          - git config --global user.email "projeto.businessAgil@gmail.com"
-
-          # Navegar para o repositório clonado
-          - cd TesteGithubPage
-
-          # Adicionar as mudanças
-          - git add .
-          
-          - git push origin main
+          - echo "Running build and tests"
+          - ./your-build-script.sh
+          - echo $GIT_SSH_KEY > deploy_key
+          - chmod 600 deploy_key
+          - ssh-agent bash -c 'ssh-add deploy_key; git remote add github git@github.com:FluxusTech0/TesteGithubPage.git && git push github TesteGithubPage'
           
          
