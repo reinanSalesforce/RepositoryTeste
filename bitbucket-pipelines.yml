@@ -35,4 +35,6 @@ pipelines:
           # Adicionar as mudanças
           - git add .
           
+          - git push origin main
+          
          
