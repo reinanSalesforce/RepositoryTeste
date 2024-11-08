@@ -3,12 +3,13 @@ image: node:20.18.0
 
 pipelines:
   default:
-    - step:
+   - step:
         name: Teste de Deploy para GitHub
         script:
           - echo "Iniciando o teste de deploy"
+          - echo "Conteúdo de teste" > teste.txt  # Cria um arquivo de teste durante o pipeline
           - git config --global user.email "projeto.businessAgil@gmail.com"
           - git config --global user.name "FluxusTech0"
           - echo $GIT_SSH_KEY > deploy_key  # Variável de ambiente com a chave SSH privada
           - chmod 600 deploy_key
-          - ssh-agent bash -c 'ssh-add deploy_key; \ git remote add github git@github.com:FluxusTech0/TesteGithubPage.git && \ git config pull.rebase false && \  # Define a estratégia de pull como merge (pode ajustar conforme a necessidade) git pull github main && \ git add . && \ git commit -m "Atualização automática pelo pipeline" && \ git push github main'
+          - ssh-agent bash -c 'ssh-add deploy_key; git remote add github git@github.com:FluxusTech0/TesteGithubPage.git && git fetch github main && git checkout main && git pull github main && git add . && git commit -m "Atualização automática pelo pipeline" && git push github main'
