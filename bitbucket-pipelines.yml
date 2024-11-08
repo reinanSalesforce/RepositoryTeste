@@ -12,8 +12,6 @@ pipelines:
           # Configurar a chave SSH
           - echo "$GIT_SSH_KEY" > deploy_key
           - chmod 600 deploy_key
-          - eval "$(ssh-agent -s)"
-          - ssh-add deploy_key
 
           # Verificar e adicionar o host do GitHub aos hosts conhecidos
           - ssh-keyscan github.com >> ~/.ssh/known_hosts
