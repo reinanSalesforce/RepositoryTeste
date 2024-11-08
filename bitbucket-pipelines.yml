@@ -32,11 +32,15 @@ pipelines:
           - git config --global user.name "FluxusTech0"
           - git config --global user.email "projeto.businessAgil@gmail.com"
 
-          # Adicionar as mudanças
+          # Rodar a build do projeto
+          - npm install
+          - npm run build
+
+          # Copiar o conteúdo da pasta de build para o repositório clonado, se necessário
+          - cp -R build/* .
+
+          # Adicionar as mudanças e fazer o commit
           - git add .
-
-          # Fazer o commit com mensagem específica
           - git commit -m "Deploy automático pela pipeline"
+          - git push origin main    
 
-          # Push para a branch main
-          - git push origin main
