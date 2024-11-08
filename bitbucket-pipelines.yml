@@ -35,8 +35,4 @@ pipelines:
           # Adicionar as mudanças
           - git add .
           
-          # Realizar o commit
-          - git commit -m 'teste'
-
-          # Push para o repositório remoto
-          - git push
+         
