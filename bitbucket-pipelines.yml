@@ -3,9 +3,9 @@ image: node:20.18.0
 clone:
   depth: full
 
-definitions:
-  steps:
-    # Step utilizado para instalar as dependências
+pipelines:
+  default:
+   # Step utilizado para instalar as dependências
     - step: &install
       name: Install dependencies
       caches: 
