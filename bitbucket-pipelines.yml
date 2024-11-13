@@ -10,22 +10,24 @@ pipelines:
           - git config --global user.name "reinanSalesforce"
 
           # Configurar a chave SSH
-         - echo "$GIT_SSH_KEY" > /tmp/deploy_key
-         - chmod 600 /tmp/deploy_key
+          - echo "$GIT_SSH_KEY" > /tmp/deploy_key
+          - chmod 600 /tmp/deploy_key
+          - export GIT_SSH_COMMAND="ssh -i /tmp/deploy_key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 
           # Verificar e adicionar o host do GitHub aos hosts conhecidos
           - ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-          # Clonar o repositório do GitHub para garantir a sincronização
+          # Verificar o remote
           - git remote add github git@github.com:reinanSalesforce/RepositoryTeste.git
+          - git remote -v  # Adicionado para depuração
+
+          # Sincronizar com o branch principal
           - git fetch github main
           - git checkout main
 
           # Adicionar ou atualizar arquivos
           - git add .
           - git commit -m "Atualização automática pelo Bitbucket pipeline" || echo "Nada para commitar"
-
-          - export GIT_SSH_COMMAND="ssh -i /tmp/deploy_key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 
           # Enviar alterações para o GitHub
           - git push github main
