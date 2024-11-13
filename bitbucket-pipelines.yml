@@ -8,8 +8,8 @@ pipelines:
        script:
         - git config --global user.email "reinanappa0@gmail.com"
         - git config --global user.name "reinanSalesforce"
-        # Adicionar um reposit√≥rio remoto chamado 'destination'
+        # Adicionar um repositório remoto chamado 'destination'
         - git remote add destination git@github.com:reinanSalesforce/RepositoryTeste.git
         # Fazer o push para o 'destination'
-        - git push destination --all
-        - git push destination --tags
+        - git push git@github.com:reinanSalesforce/RepositoryTeste.git --all --force-with-lease
+
