@@ -9,4 +9,6 @@ pipelines:
          # Configurar o usuário do Git
           - git config --global user.email "reinanappa0@gmail.com"
           - git config --global user.name "reinanSalesforce"
-          - git push --mirror git@github.com:reinanSalesforce/RepositoryTeste.git
+           # Push todas as branches, exceto as que são bloqueadas
+          - git push origin --all
+          - git push origin --tags
