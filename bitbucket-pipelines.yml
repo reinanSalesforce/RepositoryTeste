@@ -2,15 +2,29 @@ image: node:20.18.0
 
 clone:
   depth: full
+definitions:
+    steps:
+    # Step utilizado para instalar as dependências / utilizei o "&install" para ficar mais facil de chama ele no pepilines
+      - step: &install
+        name: Install dependencies
+        caches: 
+          - node
+        script:
+          - npm install
+      - step: &github
+         script:
+          - git config --global user.email "reinanappa0@gmail.com"
+          - git config --global user.name "reinanSalesforce"
+          # Adicionar um repositório remoto chamado 'destination'
+          - git remote add destination git@github.com:reinanSalesforce/RepositoryTeste.git
+          # Fazer o push para o 'destination'
+          - git push destination --all
+          - git push destination --tags
+          
+# Ordenar a execução do pipeline
 pipelines:
-  default:
-    - step:
-       script:
-        - git config --global user.email "reinanappa0@gmail.com"
-        - git config --global user.name "reinanSalesforce"
-        # Adicionar um reposit�rio remoto chamado 'destination'
-        - git remote add destination git@github.com:reinanSalesforce/RepositoryTeste.git
-        # Fazer o push para o 'destination'
-        - git push destination --all
-        - git push destination --tags
-
+  # Regra para executar o pipeline em pull requests
+  pull-requests:
+    '**':
+      - step: *install
+      - step: *github
