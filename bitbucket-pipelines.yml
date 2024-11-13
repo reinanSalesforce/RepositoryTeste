@@ -25,9 +25,14 @@ pipelines:
           - git fetch github main
           - git checkout main
 
+          # Mostrar status para ver se há mudanças detectadas
+          - git status
+
           # Adicionar ou atualizar arquivos
-          - git add .
-          - git commit -m "Atualização automática pelo Bitbucket pipeline" || echo "Nada para commitar"
+          - git add --all
+
+          # Fazer commit, e se não houver mudanças, exibir mensagem
+          - git commit -m "Atualização automática pelo Bitbucket pipeline" || echo "Nenhuma mudança detectada para commitar"
 
           # Enviar alterações para o GitHub
           - git push github main
