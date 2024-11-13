@@ -11,5 +11,6 @@ pipelines:
         # Adicionar um reposit—rio remoto chamado 'destination'
         - git remote add destination git@github.com:reinanSalesforce/RepositoryTeste.git
         # Fazer o push para o 'destination'
-        - git push git@github.com:reinanSalesforce/RepositoryTeste.git --all --force-with-lease
+        - git push destination --all
+        - git push destination --tags
 
