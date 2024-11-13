@@ -5,10 +5,11 @@ clone:
 pipelines:
   default:
     - step:
-        script:
-         # Configurar o usuário do Git
-          - git config --global user.email "reinanappa0@gmail.com"
-          - git config --global user.name "reinanSalesforce"
-           # Push todas as branches, exceto as que são bloqueadas
-          - git push origin --all
-          - git push origin --tags
+       script:
+        - git config --global user.email "reinanappa0@gmail.com"
+        - git config --global user.name "reinanSalesforce"
+        # Adicionar um repositório remoto chamado 'destination'
+        - git remote add destination git@github.com:reinanSalesforce/RepositoryTeste.git
+        # Fazer o push para o 'destination'
+        - git push destination --all
+        - git push destination --tags
