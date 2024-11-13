@@ -29,7 +29,7 @@ pipelines:
           - git status
 
           # Adicionar ou atualizar arquivos
-          - git add --all
+          - echo git add --all
 
           # Fazer commit, e se não houver mudanças, exibir mensagem
           - git commit -m "Atualização automática pelo Bitbucket pipeline" || echo "Nenhuma mudança detectada para commitar"
