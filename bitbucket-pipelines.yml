@@ -2,16 +2,25 @@ image: node:20.18.0
 
 clone:
   depth: full
+  
 definitions:
-    steps:
-    # Step utilizado para instalar as dependências / utilizei o "&install" para ficar mais facil de chama ele no pepilines
-      - step: &install
-        name: Install dependencies
-        caches: 
-          - node
-        script:
-          - npm install
-      - step: &github
+  steps:
+  # Step utilizado para instalar as dependências / utilizei o "&install" para ficar mais facil de chama ele no pepilines
+    - step: &install
+      name: Install dependencies
+      caches: 
+       - node
+      script:
+       - npm install
+    - step: &merge_with_main
+      name: Merge with main branch
+      script:
+        - git fetch origin
+        - git checkout your-branch-name
+        - git merge origin/main
+        - git push origin your-branch-name
+
+    - step: &github
          script:
           - git config --global user.email "reinanappa0@gmail.com"
           - git config --global user.name "reinanSalesforce"
@@ -27,4 +36,5 @@ pipelines:
   pull-requests:
     '**':
       - step: *install
+      - step: *merge_with_main
       - step: *github
