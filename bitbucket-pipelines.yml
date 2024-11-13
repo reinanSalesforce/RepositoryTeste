@@ -33,12 +33,3 @@ definitions:
         # Fazer o push para o 'destination'
         - git push destination --all
         - git push destination --tags
-
-# Ordenar a execução do pipeline
-pipelines:
-  # Regra para executar o pipeline em pull requests
-  pull-requests:
-    '**':
-      - step: *install
-      - step: *merge_with_main
-      - step: *github
