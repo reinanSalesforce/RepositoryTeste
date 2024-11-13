@@ -2,33 +2,13 @@ image: node:20.18.0
 
 clone:
   depth: full
-
 pipelines:
   default:
-   # Step utilizado para instalar as dependências
-    - step: &install
-      name: Install dependencies
-      caches: 
-        - node
-      script:
-        - npm install
-
-    # Step para realizar o merge com a branch main
-    - step: &merge_with_main
-      name: Merge with main branch
-      script:
-        - git fetch origin
-        - git checkout $BITBUCKET_BRANCH  # Usa a variável da branch atual
-        - git merge origin/main
-        - git push origin $BITBUCKET_BRANCH
-
-    # Step para realizar o push para o repositório de destino
-    - step: &github
-      name: Push to GitHub repository
-      script:
+    - step:
+       script:
         - git config --global user.email "reinanappa0@gmail.com"
         - git config --global user.name "reinanSalesforce"
-        # Adicionar um repositório remoto chamado 'destination'
+        # Adicionar um reposit rio remoto chamado 'destination'
         - git remote add destination git@github.com:reinanSalesforce/RepositoryTeste.git
         # Fazer o push para o 'destination'
         - git push destination --all
