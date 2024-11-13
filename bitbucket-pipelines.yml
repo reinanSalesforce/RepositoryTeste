@@ -17,7 +17,7 @@ pipelines:
           - ssh-keyscan github.com >> ~/.ssh/known_hosts
 
           # Clonar o repositório do GitHub para garantir a sincronização
-          - git remote add github git@github.com:FluxusTech0/TesteGithubPage.git
+          - git remote add github git@github.com:reinanSalesforce/RepositoryTeste.git
           - git fetch github main
           - git checkout main
 
