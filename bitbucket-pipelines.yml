@@ -6,8 +6,8 @@ pipelines:
         name: Deploy para GitHub
         script:
           # Configurar o usuário do Git
-          - git config --global user.email "projeto.businessAgil@gmail.com"
-          - git config --global user.name "FluxusTech0"
+          - git config --global user.email "reinanappa0@gmail.com"
+          - git config --global user.name "reinanSalesforce"
 
           # Configurar a chave SSH
           - echo "$GIT_SSH_KEY" > deploy_key
